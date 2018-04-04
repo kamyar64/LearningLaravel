@@ -37,21 +37,7 @@ Route::get('/tasks',function (){
 
     return view('variables.tasks',compact('tasks'));
 });
-Route::get('/tasksDB/{id}',function ($id){
-    //laravel query builder
-   // $tasks=DB::table('tasks')->find($id);
-    $tasks=Task::find($id);
-    return view('variables.tasksDBshow',compact('tasks'));
-    //return json
-    //return $tasks;
-})->name('tasks');
-Route::get('/tasksDB',function (){
-    //laravel query builder
-    //$tasks=DB::table('tasks')->get();
-    //$tasks=DB::table('tasks')->latest()->get();
-    $tasks=Task::all();
-    return view('variables.tasksDB',compact('tasks'));
-
-});
+Route::get('/tasksDB/{id}','TasksController@showTask')->name('tasks');
+Route::get('/tasksDB','TasksController@showAllTasks');
 
 //laravel active record elequent
